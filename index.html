@@ -3,51 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu Street Wars 2</title>
+    <title>Roblox Street Wars 2</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
-            background-color: #000;
+            background-color: #111;
             color: #fff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        .content {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
             position: relative;
-            z-index: 1;
-            padding-top: 20%;
         }
 
-        .content h1 {
-            font-size: 2.5em;
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
         }
 
-        .content button, .content a {
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            position: absolute;
+            left: 20px;
+        }
+
+        .navbar .hamburger-container {
+            background-color: #444;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 10px;
+            right: 50px; /* Décalage légèrement à gauche */
+        }
+
+        .navbar .hamburger {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        .menu {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            right: -250px;
+            background-color: #111;
+            color: #fff;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 999;
+        }
+
+        .menu a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: #9370DB;
+        }
+
+        .menu .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: url('hero-bg.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .hero .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero .cta-buttons a, .hero .cta-buttons button {
             background-color: #9370DB;
             border: none;
-            padding: 10px 20px;
+            padding: 15px 30px;
             color: #fff;
             font-size: 1em;
             cursor: pointer;
             text-decoration: none;
             border-radius: 5px;
-            margin: 5px;
+            transition: background-color 0.3s;
         }
 
-        .content button:hover, .content a:hover {
+        .hero .cta-buttons a:hover, .hero .cta-buttons button:hover {
             background-color: #8A2BE2;
         }
 
-        .content .stats {
-            margin-top: 20px;
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: 50px auto;
+            overflow: hidden;
+            border-radius: 10px;
         }
 
-        .content .stats div {
+        .carousel img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .carousel .prev, .carousel .next {
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carousel .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .carousel .prev:hover, .carousel .next:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .features, .news {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .features h2, .news h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .features .feature, .news .news-item {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .features .feature h3, .news .news-item h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .features .feature p, .news .news-item p {
             margin: 10px 0;
             font-size: 1.2em;
+        }
+
+        .footer {
+            background-color: #222;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        .footer .social-icons a {
+            color: #fff;
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #9370DB;
         }
 
         .snow {
@@ -76,20 +251,115 @@
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Tu joues à Street Wars 2 ? Alors rejoins le gang NLF !</h1>
-        <p>Ce n'est pas le serveur officiel, mais c'est un serveur français pour les membres NLF !</p>
-        <button onclick="window.location.href='https://www.roblox.com/games/11177482306/Streetz-War-2-NEW-UPDATE-STORE-ROBBERY'">Go jouer</button>
-        <a href="https://discord.com/invite/txkWDampFc">Discord</a>
-        <div class="stats">
-            <div></div>
-            <div></div>
-            <div></div>
+    <div class="navbar">
+        <div class="logo">Street Wars 2</div>
+        <div class="hamburger-container" id="hamburger-container" onclick="toggleMenu()">
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </div>
+
+    <div id="myMenu" class="menu">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">&times;</a>
+        <a href="#home">Accueil</a>
+        <a href="#features">Fonctionnalités</a>
+        <a href="#news">Nouvelles</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <div class="hero" id="home">
+        <h1>Bienvenue dans les Nlf sur SW2</h1>
+        <p>Plongez dans l'action Des Nlf et devenez le maître des rues.</p>
+        <div class="cta-buttons">
+            <a href="https://discord.com/invite/txkWDampFc" target="_blank">Rejoindre Discord</a>
+            <button onclick="window.location.href='https://www.roblox.com/games/11177482306/Streetz-War-2-NEW-UPDATE-STORE-ROBBERY'">Explorer le Jeu</button>
+        </div>
+    </div>
+
+    <div class="carousel">
+        <img src="https://cdn.discordapp.com/attachments/1265694063047344260/1265699271194443838/Capture_decran_2024-07-24_165759.png?ex=66a275cd&is=66a1244d&hm=9f20e35abbf5d3da6b3a84b42831458196b6bf31c31ce3b28019b7fc03e56c50&" alt="Image du jeu">
+        <img src="https://cdn.discordapp.com/attachments/1265706326223486976/1265707148914982912/Ekran_goruntusu_2024-06-26_173717.png?ex=66a27d24&is=66a12ba4&hm=f184fe4d1f87a48b2a6b834f90ff7083be12b9fd70f0db4d101edd6c0fdf818e&" alt="Image du jeu">
+        <img src="https://cdn.discordapp.com/attachments/1265706326223486976/1265707149628018771/Ekran_goruntusu_2024-06-26_173731.png?ex=66a27d24&is=66a12ba4&hm=8d6eb2e8db4d83c582ae7f25a94de90b3659e95a9e8b9a657ce4a9988d10f881&" alt="Image du jeu">
+        <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
+        <a class="next" onclick="moveSlide(1)">&#10095;</a>
+    </div>
+
+    <div class="features" id="features">
+        <h2>Fonctionnalités</h2>
+        <div class="feature">
+            <h3>Personnalisation Avancée</h3>
+            <p>Personnalisez vos avatar à votre façon.</p>
+        </div>
+        <div class="feature">
+            <h3>Événements Exclusifs</h3>
+            <p>Participez à des événements en jeu uniques et gagnez des récompenses spéciales grâce au Gang NlF.</p>
+        </div>
+        <div class="feature">
+            <h3>Multijoueur Dynamique</h3>
+            <p>Affrontez d'autres joueurs dans des batailles palpitantes et montrez vos compétences.</p>
+        </div>
+    </div>
+
+    <div class="news" id="news">
+        <h2>Actualités</h2>
+        <div class="news-item">
+            <h3>Dernière Mise à Jour</h3>
+            <p>Nous avons récemment ajouté de nouvelles fonctionnalités passionnantes pour améliorer votre expérience de jeu. Découvrez les détails de la mise à jour sur notre blog.</p>
+        </div>
+        <div class="news-item">
+            <h3>Événement Spécial</h3>
+            <p>Pas d'événements actuellement.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Street Wars 2. Tous droits réservés.</p>
+        <div class="social-icons">
+            <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a>
+            <a href="https://facebook.com/yourprofile" target="_blank">Facebook</a>
+            <a href="https://instagram.com/yourprofile" target="_blank">Instagram</a>
+        </div>
+    </div>
+
     <div class="snow"></div>
 
     <script>
+        function toggleMenu() {
+            const menu = document.getElementById('myMenu');
+            const hamburgerContainer = document.getElementById('hamburger-container');
+            const hamburger = document.getElementById('hamburger');
+            if (menu.style.right === '0px') {
+                menu.style.right = '-250px';
+                setTimeout(() => {
+                    hamburger.style.display = 'flex';
+                    hamburgerContainer.style.display = 'flex';
+                }, 500); // Attendez la fermeture du menu avant de réafficher le hamburger
+            } else {
+                menu.style.right = '0px';
+                hamburger.style.display = 'none';
+                setTimeout(() => {
+                    hamburgerContainer.style.display = 'none';
+                }, 500); // Attendez la fermeture du menu avant de masquer le conteneur
+            }
+        }
+
+        let slideIndex = 0;
+        function moveSlide(n) {
+            const slides = document.querySelectorAll('.carousel img');
+            slides.forEach((slide, index) => {
+                slide.style.display = 'none';
+            });
+            slideIndex = (slideIndex + n + slides.length) % slides.length;
+            slides[slideIndex].style.display = 'block';
+        }
+
+        // Initialiser le premier slide comme visible
+        moveSlide(0);
+
+        // Créer des flocons de neige
         const snowContainer = document.querySelector('.snow');
 
         function createSnowflake() {
@@ -111,4 +381,4 @@
         setInterval(createSnowflake, 100);
     </script>
 </body>
-</html>
+        </html>
